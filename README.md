@@ -7,3 +7,6 @@
 目的：随意练手
 
 访问地址：https://doresearch.github.io/homePage/
+
+
+1.image_test:测试background的次级属性；测试弯曲阴影；（2016年10月27日）；

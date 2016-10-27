@@ -1,0 +1,129 @@
+html,body{
+	height: 100%;
+	width: 100%;
+	font-family: sans-serif;
+	margin: 0;
+}
+*{
+	box-sizing: border-box;
+}
+/*制作视察效果*/
+.bg{    
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: url('../img/1477126120812.jpg') no-repeat center center fixed;    
+	/*background: url('../img/1477126120812.jpg') no-repeat center center;*/    
+	-webkit-background-size: cover;    
+	-moz-background-size: cover;    
+	-o-background-size: cover;    
+	background-size: cover;
+	/*opacity: 0.3;*/
+}
+.bg2{    
+	position: absolute;
+	top:100%;
+	height: 100%;
+	width: 100%;
+	background: url('../img/1477126120812.jpg') no-repeat center center;    
+	/*background: url('../img/1477126120812.jpg') no-repeat center center;*/    
+	-webkit-background-size: cover;    
+	-moz-background-size: cover;    
+	-o-background-size: cover;    
+	background-size: cover;
+	/*opacity: 0.3;*/
+}
+
+.headenav:after,.header:after{
+	content: "";
+	display: block;
+	height: 0;
+	width: 0;
+	zoom: 1;
+	clear: both;
+}
+
+.container{
+	position: relative;
+	width: 960px;
+	margin: 0 auto;
+	background: rgba(255,255,255,0.8);
+	/*background: #fff;*/
+	z-index: 1;
+}
+
+.header{
+	
+}
+
+.headenav{
+	padding: 15px 20px 7px 20px;
+	float:left;
+}
+
+.headenav:first-letter{
+	text-transform: uppercase;
+	color: #354053;
+}
+.item-list{
+	display: flex;
+}
+/*nomarl*/
+.item{
+	position: relative;
+	flex: 1;
+	padding: 30px;
+	height: 374px;
+}
+.item .item-box{
+	transition: 0.3s all ease-in-out;
+	position: absolute;
+	padding: 30px;
+	left: 0;
+	top: 0;
+}
+.item-name{
+	height: 30px;
+	transition: 0.3s all ease-in-out;
+	overflow: hidden;
+}
+.item-name p{
+	padding: 0;
+	margin: 0;
+	line-height: 20px;
+}
+.item-name p.title{
+	line-height: 30px;
+}
+div.item-image{
+	position: relative;
+	z-index: 1;
+}
+.item-image:after{
+	position: relative;
+	content: "";
+	display: block;
+	height: 10px;
+	width: 100%;
+	border-radius: 50%;
+	margin-top: -17px;
+	box-shadow: 0px 10px 1px 1px rgba(0,0,0,0.3);
+	z-index: -1;
+}
+img.item-image{
+	border:5px solid #fff;
+	width: 100%;
+}
+/*nomarl hover*/
+.item:hover{
+}
+.item:hover .item-box{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background: rgba(0,0,0,0.3);
+	z-index: 3;
+}
+.item:hover .item-name{
+	height: 120px;
+}
