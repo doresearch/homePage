@@ -1,0 +1,18 @@
+html,body{
+	height: 100%;
+	width: 100%;
+	font-family: sans-serif;
+	margin: 0;
+}
+
+.bg{    
+	height: 100%;
+	width: 100%;
+	/*background: url('../img/1477126120812.jpg') no-repeat center center fixed;    */
+	background: url('../img/1477126120812.jpg') no-repeat center center;    
+	-webkit-background-size: cover;    
+	-moz-background-size: cover;    
+	-o-background-size: cover;    
+	background-size: cover;
+	/*opacity: 0.3;*/
+}
