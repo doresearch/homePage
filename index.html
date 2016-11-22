@@ -4,9 +4,26 @@
 	<meta charset="UTF-8" />
 	<title>Mmm</title>
 	<link rel="stylesheet" href="css/main.css">
+	<style>
+		.body{
+			height: 10px;
+			width: 100px;
+			background: #ccc;
+			animation:0.25s test;
+			animation-fill-mode: forwards;
+		}
+		@keyframes test{
+			from{
+				height: 10px;
+			}
+			to{
+				height: 100px;
+			}
+		}
+	</style>
 </head>
 <body>
-	
+	<div class="body"></div>
 </body>
 </html>
 <script src="js/main.js"></script>
