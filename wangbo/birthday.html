@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta charset="UTF-8">
+    <title>致敬爱的柴女士</title>
+    <style>
+    html,
+    body {
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        -webkit-font-smoothing: antialiased;
+        font-family: sans-serif;
+    }
+    
+    .fengmian {
+        font-size: 50px;
+        font-weight: 500;
+        margin: 10px;
+        color: #9f9fa9;
+    }
+    
+    .open {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 100px;
+        width: 100px;
+        background: #f99d3a;
+        color: #fff;
+        border-radius: 50%;
+        line-height: 100px;
+        text-align: center;
+        margin-left: -50px;
+        margin-top: -50px;
+    }
+    
+    .open-hide,
+    .card-hide {
+        display: none;
+    }
+    
+    .card {
+        height: 100%;
+        background: #f8f8f8;
+    }
+    
+    .line {
+        position: relative;
+        margin: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #9f9fa9;
+    }
+    
+    .line-padding {
+        text-indent: 2rem;
+    }
+    
+    .left {
+        position: absolute;
+		right: 2rem;
+		width: 2rem;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="open">OPEN</div>
+    <div class="card card-hide">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line line-padding"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line">
+        	<div class="left"></div>
+        </div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+var open = document.querySelector('.open');
+var card = document.querySelector('.card');
+
+open.addEventListener('click', function() {
+    this.className = 'open open-hide';
+    card.className = 'card';
+    wordSpell(text, 3, function() {
+        wordSpell(text1, 4, function() {
+            wordSpell(text2, 0, function() {}, '.left')
+        })
+    })
+})
+
+
+var text = 'Dear Chailinlin:';
+var text1 = '流星划过天空，解开了礼物的银丝带，幸福就在其中，天空深蓝的卡片，写着我的祝愿。祝你生日快乐😊';
+var text2 = 'lovely';
+
+var wordSpell = function(word, line, fn, text) {
+    var timer = null,
+        text = text || '.line',
+        obj = document.querySelectorAll(text)[line],
+        index = 0;
+
+    timer = setInterval(function() {
+        if (index < word.length) {
+            obj.innerHTML += word[index++];
+        } else {
+            clearInterval(timer);
+            fn && fn()
+        }
+    }, 100)
+}
+</script>

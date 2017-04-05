@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>关于lazyLoad</title>
+		<style>
+			body{
+				margin: 0;
+			}
+			img{
+				width: 100px;
+			}
+			#pannel{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 300px;
+				width: 300px;
+				background: #FFFFFF;
+				margin-left: -150px;
+				margin-top: -150px;
+				border-radius: 4px;
+				overflow: hidden;
+				transition: 1s all;
+			}
+			.pannel-wapper{
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				width: 100vw;
+				background: rgba(0,0,0,0.3);
+			}
+			#pannel .pannel-img{
+				display: block;
+			}
+			#pannel .pannel-img img{
+				opacity: 0;
+				/*transition: 0.2s all;*/
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="pannel-wapper">
+			
+		</div>
+		<div id="pannel">
+			<div class="pannel-img">
+				<img src="" alt="" />
+			</div>
+			<div class="pannel-text">
+				
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+
+//	function lazyLoad(obj,src){
+//		console.log('lazyLoad');
+//		
+//		var img = document.createElement('img');
+//		
+//		img.addEventListener('load',function(e){
+//			console.log(e);
+//			console.log(img.height);
+//			console.log(img.width);
+//			obj.src = 
+//		})
+//		
+//		img.src = src;
+//	}
+
+//	function throttle(){
+//		
+//	}
+	
+//	lazyLoad(document.querySelector('img'),document.querySelector('img').attributes['data-src'].value);
+	
+	var ShowImg = function(obj){
+		this.obj = obj;
+		this.src = obj.src;//1.此处是用来获取图片的地址的
+		this.img = document.createElement('img');
+		this.init();
+	}
+	
+	ShowImg.prototype = {
+		init:function(){
+			var that = this;
+			this.img.addEventListener('load',function(e){
+				that.onLoad(e);
+			})	
+			
+		},
+		onLoad:function(e){
+			//优先完成方框的移动，之后再
+			var el = document.getElementById('pannel'),that = this;
+			
+			this.obj.style.height = this.img.height/4 + 'px';
+			this.obj.style.width = this.img.width/4 + 'px';
+			el.style.height = this.img.height/4 + 'px';
+			el.style.width = this.img.width/4 + 'px';
+			el.style.marginTop = -this.img.height/8 + 'px';
+			el.style.marginLeft = -this.img.width/8 + 'px';
+
+		
+		   	
+		   	var transitionEvent = this.whichTransitionEvent();
+		   	
+  			transitionEvent && el.addEventListener(transitionEvent, function(e) {
+  				console.log('动画完成');
+				that.obj.src = that.img.src;
+				that.obj.style.opacity  = 1;
+                el.removeEventListener(transitionEvent,arguments.callee,false);//销毁事件
+           });
+		},
+		whichTransitionEvent:function(){
+			var el = document.getElementById('pannel');
+			
+			transitions = {
+	        		'transition':'transitionend',
+	        		'OTransition':'oTransitionEnd',
+	        		'MozTransition':'transitionend',
+	        		'WebkitTransition':'webkitTransitionEnd'
+	       	}
+			
+		   	for(t in transitions){
+	        		if( el.style[t] !== undefined ){
+	            		return transitions[t];
+	           	}
+	       	}
+		},
+		add:function(src){
+			this.img.src = src;
+			
+		}
+	}
+	
+	var showimg = new ShowImg(document.querySelector('img'));
+	showimg.add('../img/A.jpg');
+</script>
