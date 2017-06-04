@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>首先underscore.js的框架</div>
+</body>
+
+</html>
+<script>
+/**测试用underscore.js**/
+var root = this;
+var previousUnderscore = root._;
+var ArrayProto = Array.prototype,
+    FuncProto = Function.prototype,
+    ObjProto = Object.prototype;
+
+
+var push = ArrayProto.push,
+    slice = ArrayProto.slice,
+    toString = ObjProto.toString,
+    hasOwnProperty = ObjProto.hasOwnProperty;
+
+var nativeIsArray = Array.isArray,
+    nativeKeys = Object.keys,
+    nativeBind = FuncProto.bind,
+    nativeCreate = Object.create;
+
+
+var arr = [],
+    brr = {
+        length: 0
+    };
+console.info(Array.isArray(arr));
+console.info(Array.isArray(brr));
+console.info(nativeKeys(brr
+	));
+</script>
