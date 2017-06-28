@@ -7,3 +7,22 @@
 	<body>
 	</body>
 </html>
+<script>	
+	let ArrayProto = Array.prototype;
+
+	hasValue = function(){
+		// 1.当undefind的时候，无论是字符串还是值
+		arguments = arguments[0].split('.')
+
+		if(arguments[0][arguments[1]] === undefined) return false;
+		if(arguments[0][arguments[1]] === null) return false;
+		if(arguments[0][arguments[1]] === 'undefined') return false;
+		if(arguments[0][arguments[1]] === 'null') return false;
+
+		if(arguments[2]){
+			return hasValue(ArrayProto.splice.call(arguments,1).join('.'));
+		}
+	}
+	let test = {name:{}};
+	console.log(hasValue('test.name.test.name'))
+</script>
