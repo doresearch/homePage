@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<script>
+var A = function(name) {
+    return this.init(name);
+}
+
+A.prototype = {
+    init: function(name) {
+        this.name = name;
+        return this;
+    },
+    getName: function() {
+        console.log(this.name);
+    },
+    delete: function() {
+        console.log('我要删除作业')
+    },
+    deleteProto: function() {
+        if (this.IsDelete()) {
+            this.delete();
+        }
+    },
+    IsDelete() {
+        return confirm('是否删除数据');
+    }
+}
+
+var a = new A(123);
+a.deleteProto()
+</script>

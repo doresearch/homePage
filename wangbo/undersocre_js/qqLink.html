@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html {
+        font-family: '黑体';
+        font-size: 16px;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .m-bar {}
+
+    .circle {
+        position: relative;
+        /*height: 20px;*/
+        /*width: 1000px;*/
+        height: 200px;
+        width: 200px;
+    }
+
+    .circle:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        content: '';
+        display: block;
+        background: linear-gradient(to left, rgb(42, 173, 221), #fff)
+        /*background: transparent;*/
+    }
+
+    .circle:after {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        border-radius: 50%;
+        height: 200px;
+        width: 200px;
+        content: '';
+        display: block;
+        background: #fff;
+    }
+
+    span {
+    	display: block;
+    	float: left;
+    }
+
+    canvas {
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="m-bar"> -->
+    <!-- <span>这个是测试模版</span> -->
+    <!-- <div class="circle"></div> -->
+    <!-- </div> -->
+    <a href="tencent://message/?Menu=yes&uin=710978404&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">link</a>
+    <div class="m-bar">
+        <span>this</span>
+        <span>this</span>
+        <span><span>this</span></span>
+        <span>this</span>
+    </div>
+</body>
+
+</html>
+<script>
+var W = function() {
+    return this.init();
+}
+
+// prototype
+W.prototype = {
+    coreObj: Object.prototype,
+    coreArray: Array.prototype,
+    init: function() {
+        return this;
+    },
+    // 准备一个通用的type函数
+    type: function(ele) {
+        return this.coreObj.toString.call(ele).slice(8, -1).toLowerCase();
+    },
+    /** 这个函数用来比较数据是否存在，应该满足第一次查询该数据是否存在的功能，一般用于res的返回值
+     *Param String,判断这个数据是否存在
+     *Param root这个数据用来标示根数据，如果这个根数据不存在name就直接return false不需要容错,没有根的话认为是全局对象
+     返回true的时候应该是有数据name
+     *应该处理以下situatio：
+     1.当数据为undefined的时候
+     2.可以循环判断
+     */
+    hasValue: function(string, root) {
+        var arr = string.split('.');
+
+        if (this.type(root) == 'undefined' || root == 'undefined') return false;
+        if (this.type(root[arr[1]]) == 'undefined' || this.type(root[arr[1]]) == 'undefined') return false
+
+        if (arr.length > 2) {
+            arr = arr.splice(1);
+            return this.hasValue(arr.join('.'), root[arr[0]])
+        } else {
+            return true
+        }
+    },
+    /**
+	Param key希望操作的数据的名称
+	getItem获取数据
+	setItem设置数据
+	clearItem清楚某一个数据
+    */
+    getItem: function(key) { //假如浏览器支持本地存储则从localStorage里getItem，否则乖乖用Cookie
+        return window.localStorage ? localStorage.getItem(key) : Cookie.read(key);
+    },
+    setItem: function(key, val) { //假如浏览器支持本地存储则调用localStorage，否则乖乖用Cookie
+        if (window.localStorage) {
+            localStorage.setItem(key, val);
+        } else {
+            Cookie.write(key, val);
+        }
+    },
+    clearItem(key) {
+        if (window.localStorage) {
+            localStorage.setItem(key, '');
+        } else {
+            Cookie.write(key, '');
+        }
+    }
+    /**
+     *历史操作
+     */
+}
+
+
+var w = new W();
+</script>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+</body>
+
+</html>
+<script>
+function addScript(src) {
+    var script = document.createElement('script');
+    script.src = src;
+    document.body.appendChild(script);
+    return script;
+}
+
+console.log(addScript('http://libs.baidu.com/jquery/2.0.0/jquery.min.js').src)
+</script>
