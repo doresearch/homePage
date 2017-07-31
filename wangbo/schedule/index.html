@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        font-family: sans-serif;
+    }
+
+    .table {
+        position: relative;
+        border: 1px solid #ccc;
+        line-height: 40px;
+    }
+
+    .circle {
+        height: 20px;
+        width: 20px;
+        border: 4px solid #ccc;
+        border-radius: 50%;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        margin-left: 10px;
+        float: left;
+    }
+
+    .su .circle {
+        border-color: #66CC00;
+    }
+
+    .su {
+        color: #66CC00;
+    }
+
+    .table-title {
+        line-height: 28px;
+        float: left;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        margin-left: 10px;
+    }
+
+    .clear-fix:after {
+        display: block;
+        content: '';
+        zoom: 1;
+        clear: both;
+    }
+
+    .table-body {
+        border-top: 1px solid #ccc;
+    }
+
+    .table-body .table-row {
+        display: flex;
+    }
+
+    .table-border .table-body .table-cell {
+        border-left: 1px solid #ccc;
+        flex: 1;
+        font-size: 16px;
+    }
+
+    .table-header{
+        border-bottom: 1px solid #ccc;
+    }
+
+    .table-cell div {
+        padding: 0 10px;
+        width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .table-border .table-body .table-cell:nth-child(1) {
+        border-left: none;
+    }
+
+    .progress {
+        color: transparent;
+        width: 100%;
+        height: 20px;
+        background: rgba(102, 204, 0, 1);
+        margin-top: 10px;
+        transition: 0.5s all;
+    }
+
+    .detail {
+        font-size: 14px;
+        color: #ccc;
+    }
+
+    .detail a,
+    .detail a:link,
+    .detail a:visited,
+    .detail a:active {
+        color: #ccc;
+    }
+
+    .detail a:hover{
+        color: #2aaddd;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="table table-border">
+        <div class="clear-fix su">
+            <div class="circle"></div>
+            <div class="table-title">
+                2017-07-31
+            </div>
+        </div>
+        <div class="table-body clear-fix">
+            <div class="table-row table-header">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        项目
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        完成进度
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        地铁上完成学习任务
+                        <div class="detail">
+                            阅读了cocos2d的内容,掌握内容见笔记
+                            <br/>
+                            <a href="http://www.cocos.com/docs/creator/content-workflow/node-component.html">节点和组件</a>
+                            <a href="http://www.cocos.com/docs/creator/content-workflow/transform.html">坐标系和节点变换属性</a>
+                            <a href="http://www.cocos.com/docs/creator/content-workflow/node-tree.html">管理节点层级和显示顺序</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+document.onreadystatechange = function(res) {
+    if (document.readyState == "complete") { //当页面加载状态为完全结束时进入 
+        ProgressInit();
+    }
+}
+
+function ProgressInit() {
+    var progress = document.querySelectorAll('.progress'),
+        i, name = document.querySelector('#name ');
+
+    // progress.map(function(index,item){
+
+    // })
+
+    // console.log()
+    for (i = 0; i < progress.length; i++) {
+        progressColor(progress[i]);
+        progressWidth(progress[i])
+    }
+    // progress[0].style.width = '100px'
+
+}
+
+function progressWidth(node) {
+    node.style.width = node.innerHTML + '%';
+}
+
+function progressColor(node) {
+    var rate = Number(node.innerHTML) / 100;
+    var r = 102 * rate,
+        g = 204 * rate,
+        b = 0 * rate;
+
+    node.style.color = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+
+}
+</script>
