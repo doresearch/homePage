@@ -14,10 +14,15 @@
         font-family: sans-serif;
     }
 
+    body {
+        margin: 0;
+    }
+
     .table {
         position: relative;
         border: 1px solid #ccc;
         line-height: 40px;
+        margin: 10px;
     }
 
     .circle {
@@ -68,7 +73,7 @@
         font-size: 16px;
     }
 
-    .table-header{
+    .table-header {
         border-bottom: 1px solid #ccc;
     }
 
@@ -89,6 +94,7 @@
         height: 20px;
         background: rgba(102, 204, 0, 1);
         margin-top: 10px;
+        padding: 0;
         transition: 0.5s all;
     }
 
@@ -104,8 +110,12 @@
         color: #ccc;
     }
 
-    .detail a:hover{
+    .detail a:hover {
         color: #2aaddd;
+    }
+
+    .hide {
+        display: none
     }
     </style>
 </head>
@@ -115,10 +125,10 @@
         <div class="clear-fix su">
             <div class="circle"></div>
             <div class="table-title">
-                2017-07-31
+                2017-07-31 point:0.5(作息习惯)+0.5(地铁看书)+0.5(加分) = 1.5分
             </div>
         </div>
-        <div class="table-body clear-fix">
+        <div class="table-body clear-fix hide">
             <div class="table-row table-header">
                 <div class="table-cell" style="flex:3">
                     <div>
@@ -161,12 +171,111 @@
                 </div>
                 <div class="table-cell">
                     <div>
-                        <div class="progress">30</div>
+                        <div class="progress">60</div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        地铁上的学习任务
+                        <div class="detail">
+                            看了cocos2d的内容，主要内容忘了
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">60</div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        晚上学习,没有完成模版化,看了关于cocos2d事件部分的内容,
+                        <div class="detail">
+                            具体了解了事件触发，对象取值,具体的内容感觉得看完就完成记录，无论是笔记还是link
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">80</div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        晚上11:38睡觉
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">80</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="table table-border">
+        <div class="clear-fix su">
+            <div class="circle"></div>
+            <div class="table-title">
+                2017-08-01
+            </div>
+        </div>
+        <div class="table-body clear-fix">
+            <div class="table-row table-header">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        项目
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        完成进度
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        早上07:40起床
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">80</div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell" style="flex:3">
+                    <div>
+                        地铁上完成学习任务
+                        <div class="detail">
+                            晚上回去需要就这一部分内容重新看一遍，重点复习
+                            <br/>
+                            <a href="http://www.cocos.com/docs/creator/scripting/class.html">使用 cc.Class 声明类型</a>
+                            <a href="http://www.cocos.com/docs/creator/scripting/access-node-component.html">常用节点和组件接口</a>
+                            <a href="http://www.cocos.com/docs/creator/scripting/life-cycle-callbacks.html">生命周期回调</a>
+                            <a href="http://www.cocos.com/docs/creator/scripting/create-destroy.html">创建和销毁节点</a>
+                            <a href="http://www.cocos.com/docs/creator/scripting/scene-managing.html">加载和切换场景</a>
+                            <a href="http://www.cocos.com/docs/creator/scripting/load-assets.html">获得和加载资源</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-cell">
+                    <div>
+                        <div class="progress">60</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
@@ -200,11 +309,11 @@ function progressWidth(node) {
 
 function progressColor(node) {
     var rate = Number(node.innerHTML) / 100;
-    var r = 102 * rate,
-        g = 204 * rate,
+    var r = 255 - Math.ceil((255 - 102) * rate),
+        g = Math.ceil(204 * rate),
         b = 0 * rate;
 
-    node.style.color = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-
+    node.style.background = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+    console.log(node.style.background, 'rgba(' + r + ',' + g + ',' + b + ',1)')
 }
 </script>
