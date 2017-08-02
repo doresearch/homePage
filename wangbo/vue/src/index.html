@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>这个是王铂的博客首页</title>
+</head>
+
+<body>
+	<div id="app">
+        <router-view></router-view>
+    </div>
+</body>
+
+</html>
+<script>
+window.storage = {
+    getItem: function(key) { //假如浏览器支持本地存储则从localStorage里getItem，否则乖乖用Cookie
+        return window.localStorage ? localStorage.getItem(key) : Cookie.read(key);
+    },
+    setItem: function(key, val) { //假如浏览器支持本地存储则调用localStorage，否则乖乖用Cookie
+        if (window.localStorage) {
+            localStorage.setItem(key, val);
+        } else {
+            Cookie.write(key, val);
+        }
+    },
+    clearItem(key) {
+        if (window.localStorage) {
+            localStorage.setItem(key, '');
+        } else {
+            Cookie.write(key, '');
+        }
+    }
+};
+
+// let wangboJs = storage.getItem('wangbo');
+
+// document.write("<script>" + wangboJs + "<\/script>");
+</script>

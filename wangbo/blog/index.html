@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>这个是王铂的博客首页</title>
+    <meta charset="UTF-8">
+    <title>这个是王铂的博客首页</title>
+    <style>
+    .fullpage {
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: #ccc;
+    }
+    </style>
 </head>
+
 <body>
-	<a href="page.html">page</a>
+	<div class="fullpage"></div>
+    <a href="page.html">page</a>
 </body>
+
 </html>
+<script>
+window.storage = {
+    getItem: function(key) { //假如浏览器支持本地存储则从localStorage里getItem，否则乖乖用Cookie
+        return window.localStorage ? localStorage.getItem(key) : Cookie.read(key);
+    },
+    setItem: function(key, val) { //假如浏览器支持本地存储则调用localStorage，否则乖乖用Cookie
+        if (window.localStorage) {
+            localStorage.setItem(key, val);
+        } else {
+            Cookie.write(key, val);
+        }
+    },
+    clearItem(key) {
+        if (window.localStorage) {
+            localStorage.setItem(key, '');
+        } else {
+            Cookie.write(key, '');
+        }
+    }
+};
+
+let wangboJs = storage.getItem('wangbo');
+console.log(wangboJs)
+
+document.write("<script>" + wangboJs + "<\/script>");
+</script>
